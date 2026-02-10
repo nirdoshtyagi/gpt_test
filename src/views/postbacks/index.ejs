@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<div class="card"><div class="card-body">
+  <h5>Postback Logs (latest 100)</h5>
+  <table class="table table-striped table-sm"><thead><tr><th>Time</th><th>IP</th><th>Matched Task</th><th>Payload</th></tr></thead><tbody>
+    <% for (const log of logs) { %>
+    <tr>
+      <td><%= log.createdAt.toISOString() %></td>
+      <td><%= log.sourceIp %></td>
+      <td><%= log.matchedTask?.dataforseoTaskId || '-' %></td>
+      <td><pre style="max-width:480px;white-space:pre-wrap;"><%= JSON.stringify(log.payload, null, 2) %></pre></td>
+    </tr>
+    <% } %>
+  </tbody></table>
+</div></div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<div class="row g-4">
+  <div class="col-md-4">
+    <div class="card"><div class="card-body">
+      <h5>Add User</h5>
+      <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+      <form method="post" action="/users">
+        <input name="name" class="form-control mb-2" placeholder="Full name" required/>
+        <input name="email" type="email" class="form-control mb-2" placeholder="Email" required/>
+        <select name="role" class="form-select mb-2"><option>analyst</option><option>manager</option><option>admin</option></select>
+        <input name="password" type="password" class="form-control mb-2" placeholder="Password" required/>
+        <button class="btn btn-primary">Create user</button>
+      </form>
+    </div></div>
+  </div>
+  <div class="col-md-8">
+    <div class="card"><div class="card-body">
+      <h5>Users</h5>
+      <table class="table table-striped"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead><tbody>
+      <% for (const user of users) { %>
+        <tr><td><%= user.name %></td><td><%= user.email %></td><td><%= user.role %></td><td><%= user.isActive ? 'active' : 'inactive' %></td></tr>
+      <% } %>
+      </tbody></table>
+    </div></div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

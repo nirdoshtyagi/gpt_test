@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<div class="row g-4">
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    <h5>Add Project</h5>
+    <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+    <form method="post" action="/projects">
+      <input class="form-control mb-2" name="name" placeholder="Project name" required />
+      <input class="form-control mb-2" name="clientName" placeholder="Client" />
+      <textarea class="form-control mb-2" name="description" placeholder="Description"></textarea>
+      <label>Owner</label>
+      <select class="form-select mb-2" name="owner" required>
+        <% for (const user of users) { %><option value="<%= user._id %>"><%= user.name %></option><% } %>
+      </select>
+      <label>Members</label>
+      <select class="form-select mb-3" name="members" multiple>
+        <% for (const user of users) { %><option value="<%= user._id %>"><%= user.name %></option><% } %>
+      </select>
+      <button class="btn btn-primary">Create project</button>
+    </form>
+  </div></div></div>
+  <div class="col-md-8"><div class="card"><div class="card-body">
+    <h5>Projects</h5>
+    <table class="table table-striped"><thead><tr><th>Name</th><th>Client</th><th>Owner</th><th>Members</th></tr></thead><tbody>
+      <% for (const project of projects) { %>
+      <tr><td><%= project.name %></td><td><%= project.clientName || '-' %></td><td><%= project.owner?.name || '-' %></td><td><%= project.members?.map((m) => m.name).join(', ') %></td></tr>
+      <% } %>
+    </tbody></table>
+  </div></div></div>
+</div>
+<%- include('../partials/footer') %>

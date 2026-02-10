@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+<div class="row g-4">
+  <div class="col-md-4"><div class="card"><div class="card-body">
+    <h5>Create Google Organic Task</h5>
+    <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+    <form method="post" action="/tasks">
+      <label>Project</label>
+      <select class="form-select mb-2" name="project" required>
+        <% for (const project of projects) { %><option value="<%= project._id %>"><%= project.name %></option><% } %>
+      </select>
+      <input class="form-control mb-2" name="keyword" placeholder="keyword" required />
+      <input class="form-control mb-2" name="locationCode" value="2840" required />
+      <input class="form-control mb-2" name="languageCode" value="en" required />
+      <select class="form-select mb-2" name="device"><option>desktop</option><option>mobile</option></select>
+      <select class="form-select mb-2" name="os"><option>windows</option><option>macos</option><option>android</option><option>ios</option></select>
+      <input class="form-control mb-3" name="tag" placeholder="internal tag" />
+      <button class="btn btn-primary">Submit to DataForSEO</button>
+    </form>
+  </div></div></div>
+  <div class="col-md-8"><div class="card"><div class="card-body">
+    <h5>Task Queue</h5>
+    <table class="table table-striped"><thead><tr><th>Keyword</th><th>Project</th><th>DataForSEO Task ID</th><th>Status</th></tr></thead><tbody>
+      <% for (const task of tasks) { %>
+      <tr><td><%= task.keyword %></td><td><%= task.project?.name || '-' %></td><td><%= task.dataforseoTaskId || '-' %></td><td><span class="badge text-bg-secondary"><%= task.status %></span></td></tr>
+      <% } %>
+    </tbody></table>
+  </div></div></div>
+</div>
+<%- include('../partials/footer') %>

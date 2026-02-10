@@ -1,0 +1,26 @@
+{
+  "name": "dataforseo-serp-platform",
+  "version": "1.0.0",
+  "description": "Enterprise-ready DataForSEO SERP management platform with MongoDB backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "lint": "node -e \"console.log('No linter configured')\"",
+    "seed:admin": "node scripts/seed-admin.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "joi": "^17.13.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.8.0",
+    "morgan": "^1.10.0"
+  }
+}

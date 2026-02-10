@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<h2 class="mb-3">Enterprise SERP Dashboard</h2>
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="card"><div class="card-body"><div class="card-title">Users</div><h3><%= userCount %></h3></div></div></div>
+  <div class="col-md-4"><div class="card"><div class="card-body"><div class="card-title">Projects</div><h3><%= projectCount %></h3></div></div></div>
+  <div class="col-md-4"><div class="card"><div class="card-body"><div class="card-title">SERP Tasks</div><h3><%= taskCount %></h3></div></div></div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5>Recent Tasks</h5>
+    <table class="table table-sm">
+      <thead><tr><th>Keyword</th><th>Project</th><th>Status</th><th>Created</th></tr></thead>
+      <tbody>
+      <% for (const task of recentTasks) { %>
+        <tr><td><%= task.keyword %></td><td><%= task.project?.name || '-' %></td><td><span class="badge text-bg-secondary"><%= task.status %></span></td><td><%= task.createdAt.toISOString() %></td></tr>
+      <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('partials/footer') %>
